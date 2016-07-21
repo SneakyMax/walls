@@ -8,16 +8,10 @@ namespace Assets._Scripts
     [UnityComponent]
     public class DimensionsHelper : MonoBehaviour
     {
-        [AssignedInUnity]
-        public float Height = 3.5f;
-
-        [AssignedInUnity]
-        public float FloorDepth = 0.5f;
-
-        [AssignedInUnity]
-        public float WallDistanceFromSides = 1.0f;
-
         public bool IsReady { get; private set; }
+
+        [AssignedInUnity]
+        public RoomGenerator RoomGenerator;
 
         [AssignedInUnity]
         public SteamVR_PlayArea PlayArea;
@@ -28,6 +22,8 @@ namespace Assets._Scripts
         private Rect playAreaDimensions;
 
         private IList<Action> readyActions;
+
+        public const float PlayAreaHeight = 2.032f; // 6 feet 8 inches
 
         [UnityMessage]
         public void Awake()
@@ -86,7 +82,7 @@ namespace Assets._Scripts
 
         public static float NegativeXOutside
         {
-            get { return NegativeX - Instance.WallDistanceFromSides; }
+            get { return -Instance.RoomGenerator.Width / 2.0f; }
         }
 
         public static float PositiveX
@@ -98,7 +94,7 @@ namespace Assets._Scripts
         {
             get
             {
-                return PositiveX + Instance.WallDistanceFromSides;
+                return Instance.RoomGenerator.Width / 2.0f;
             }
         }
 
@@ -127,16 +123,15 @@ namespace Assets._Scripts
             get { return new Vector4(XCoordinates.x, XCoordinates.y, ZCoordinates.x, ZCoordinates.y); }
         }
 
-        public static float ZHeight
-        {
-            get { return Instance.Height; }
-        }
+        public static float ZPlayAreaTop { get { return PlayAreaHeight; } }
+
+        public static float ZCeilingTop {get { return Instance.RoomGenerator.Height - Instance.RoomGenerator.PlatformHeight; } }
 
         public static float Floor { get { return 0; } }
 
         public static float UnderFloor
         {
-            get { return -Instance.FloorDepth; }
+            get { return -Instance.RoomGenerator.PlatformHeight; }
         }
     }
 }

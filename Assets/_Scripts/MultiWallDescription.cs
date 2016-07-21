@@ -7,6 +7,8 @@ namespace Assets._Scripts
     [UnityComponent]
     public class MultiWallDescription : MonoBehaviour, IWallDescription
     {
+        public string DescriptionName {get { return Name; } }
+
         [AssignedInUnity]
         public string Name;
 

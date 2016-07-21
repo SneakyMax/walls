@@ -8,6 +8,8 @@ namespace Assets._Scripts
     [UnityComponent]
     public class WallDescription : MonoBehaviour, IWallDescription
     {
+        public string DescriptionName {get { return Name; } }
+
         [AssignedInUnity]
         public string Name;
 
@@ -36,21 +38,39 @@ namespace Assets._Scripts
         {
             var halfWidth = thickness / 2.0f;
 
-            var leftBound = DimensionsHelper.NegativeXOutside;
-            var rightBound = DimensionsHelper.PositiveXOutside;
+            var leftOuterBound = DimensionsHelper.NegativeXOutside;
+            var rightOuterBound = DimensionsHelper.PositiveXOutside;
 
-            var fullWidth = rightBound - leftBound;
+            var leftBound = DimensionsHelper.NegativeX;
+            var rightBound = DimensionsHelper.PositiveX;
 
-            var topBound = DimensionsHelper.ZHeight;
+            var fullWidth = rightOuterBound - leftOuterBound;
+            var innerWidth = rightBound - leftBound;
+
+            var topCeilingBound = DimensionsHelper.ZCeilingTop;
+            var topPlayAreaBound = DimensionsHelper.ZPlayAreaTop;
+            
             var bottomBound = DimensionsHelper.UnderFloor;
+            var bottomBoundPlayArea = 0;
 
-            var fullHeight = topBound - bottomBound;
+            var fullHeight = topCeilingBound - bottomBound;
+            var innerHeight = topPlayAreaBound - bottomBoundPlayArea;
 
-            var left = leftBound + LeftPositionFromLeft * fullWidth;
-            var right = leftBound + RightPositionFromLeft * fullWidth;
+            var left = LeftPositionFromLeft < 0.01f ?
+                leftOuterBound :
+                leftBound + LeftPositionFromLeft * innerWidth;
 
-            var top = topBound - fullHeight * TopPositionFromTop;
-            var bottom = topBound - fullHeight * BottomPositionFromTop;
+            var right = RightPositionFromLeft > 0.99f ?
+                rightOuterBound :
+                leftBound + RightPositionFromLeft * innerWidth;
+
+            var top = TopPositionFromTop < 0.01f ?
+                topCeilingBound :
+                topPlayAreaBound - TopPositionFromTop * innerHeight;
+
+            var bottom = BottomPositionFromTop > 0.99 ?
+                bottomBound :
+                topPlayAreaBound - BottomPositionFromTop * innerHeight;
 
             return new List<MeshInfo>
             {

@@ -6,5 +6,7 @@ namespace Assets._Scripts
     public interface IWallDescription
     {
         IEnumerable<MeshInfo> GenerateSolidMeshes(float thickness);
+
+        string DescriptionName { get; }
     }
 }

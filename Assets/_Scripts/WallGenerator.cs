@@ -97,6 +97,8 @@ namespace Assets._Scripts
                 var meshes = description.GenerateSolidMeshes(thickness);
                 var wall = InstantiateWall(meshes, description);
 
+                wall.DescriptionName = description.DescriptionName;
+
                 WallController.Instance.AddWall(wall);
             }
             // ReSharper disable once FunctionNeverReturns

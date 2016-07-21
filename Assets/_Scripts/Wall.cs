@@ -6,5 +6,8 @@ namespace Assets._Scripts
     public class Wall : MonoBehaviour
     {
         public IWallDescription Description { get; set; }
+
+        [AssignedInUnity]
+        public string DescriptionName;
     }
 }
