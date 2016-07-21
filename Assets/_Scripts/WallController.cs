@@ -52,7 +52,7 @@ namespace Assets._Scripts
                 RemoveWall(toRemove);
         }
 
-        private void RemoveWall(GameObject wall)
+        public void RemoveWall(GameObject wall)
         {
             walls.Remove(wall);
 

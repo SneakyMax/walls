@@ -43,8 +43,7 @@ namespace Assets._Scripts
 
             var leftBound = DimensionsHelper.NegativeX;
             var rightBound = DimensionsHelper.PositiveX;
-
-            var fullWidth = rightOuterBound - leftOuterBound;
+            
             var innerWidth = rightBound - leftBound;
 
             var topCeilingBound = DimensionsHelper.ZCeilingTop;
@@ -52,8 +51,7 @@ namespace Assets._Scripts
             
             var bottomBound = DimensionsHelper.UnderFloor;
             var bottomBoundPlayArea = 0;
-
-            var fullHeight = topCeilingBound - bottomBound;
+            
             var innerHeight = topPlayAreaBound - bottomBoundPlayArea;
 
             var left = LeftPositionFromLeft < 0.01f ?

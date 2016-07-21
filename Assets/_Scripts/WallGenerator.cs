@@ -98,6 +98,7 @@ namespace Assets._Scripts
                 var wall = InstantiateWall(meshes, description);
 
                 wall.DescriptionName = description.DescriptionName;
+                wall.tag = "Wall";
 
                 WallController.Instance.AddWall(wall);
             }
