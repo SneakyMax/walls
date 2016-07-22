@@ -24,19 +24,11 @@ ExportedObj/
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
-/Assets/StreamingAssets/Master Bank.bank
-/Assets/StreamingAssets/Master Bank.bank.meta
-/Assets/StreamingAssets/Master Bank.strings.bank
-/Assets/StreamingAssets/Master Bank.strings.bank.meta
 
 .DS_Store
 /Assets/FMODStudioCache.asset
 /Assets/FMODStudioCache.asset.meta
 .cache
 /fmod_editor.log
-/Assets/Resources/FMODStudioSettings.asset
-/Assets/Resources/FMODStudioSettings.asset.meta
 /*.DS_Store
 /fmod.log
-/Assets/Resources/FMODStudioSettings.asset
-/Assets/Resources/FMODStudioSettings.asset.meta
