@@ -28,7 +28,6 @@ namespace Assets._Scripts.Helpers
         }
 
         // http://wiki.unity3d.com/index.php/ProceduralPrimitives
-        [SuppressMessage("ReSharper", "InconsistentNaming")]
         public static MeshInfo Cube(Vector2 xPositions, Vector2 yPositions, Vector2 zPositions)
         {
             /*Mesh mesh = new Mesh();
@@ -138,32 +137,8 @@ namespace Assets._Scripts.Helpers
 	            // Top
 	            up, up, up, up
             };
-
-            var _00 = new Vector2(0f, 0f);
-            var _10 = new Vector2(1f, 0f);
-            var _01 = new Vector2(0f, 1f);
-            var _11 = new Vector2(1f, 1f);
-
-            var uvs = new[]
-            {
-	            // Bottom
-	            _11, _01, _00, _10,
- 
-	            // Left
-	            _11, _01, _00, _10,
- 
-	            // Front
-	            _11, _01, _00, _10,
- 
-	            // Back
-	            _11, _01, _00, _10,
- 
-	            // Right
-	            _11, _01, _00, _10,
- 
-	            // Top
-	            _11, _01, _00, _10,
-            };
+            
+            var uvs = GetCubeUVsTiling(width, height, depth);
             
             int[] triangles = 
             {
@@ -204,6 +179,82 @@ namespace Assets._Scripts.Helpers
             {
                 Mesh = mesh,
                 Bounds = bounds
+            };
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        private static Vector2[] GetCubeUVsStretched()
+        {
+            var _00 = new Vector2(0f, 0f);
+            var _10 = new Vector2(1f, 0f);
+            var _01 = new Vector2(0f, 1f);
+            var _11 = new Vector2(1f, 1f);
+
+            return new[]
+            {
+                // Bottom
+	            _11, _01, _00, _10,
+ 
+	            // Left
+	            _11, _01, _00, _10,
+ 
+	            // Front
+	            _11, _01, _00, _10,
+ 
+	            // Back
+	            _11, _01, _00, _10,
+ 
+	            // Right
+	            _11, _01, _00, _10,
+ 
+	            // Top
+	            _11, _01, _00, _10,
+            };
+        }
+
+        private static Vector2[] GetCubeUVsTiling(float width, float height, float depth)
+        {
+            width = Mathf.Abs(width);
+            height = Mathf.Abs(height);
+            depth = Mathf.Abs(depth);
+
+            return new[]
+            {
+                // Bottom
+                new Vector2(width, depth),
+                new Vector2(0, depth),
+                new Vector2(0, 0),
+                new Vector2(width, 0),
+
+                // Left
+                new Vector2(depth, height),
+                new Vector2(0, height),
+                new Vector2(0, 0),
+                new Vector2(depth, 0),
+
+                // Front
+                new Vector2(width, height),
+                new Vector2(0, height),
+                new Vector2(0, 0),
+                new Vector2(width, 0),
+
+                // Back
+                new Vector2(width, height),
+                new Vector2(0, height),
+                new Vector2(0, 0),
+                new Vector2(width, 0),
+
+                // Right
+                new Vector2(depth, height),
+                new Vector2(0, height),
+                new Vector2(0, 0),
+                new Vector2(depth, 0),
+
+                // Top
+                new Vector2(width, depth),
+                new Vector2(0, depth),
+                new Vector2(0, 0),
+                new Vector2(width, 0)
             };
         }
     }

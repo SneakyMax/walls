@@ -51,6 +51,7 @@ namespace Assets._Scripts
         {
             var rootObj = new GameObject();
             root = rootObj.transform;
+            rootObj.name = "World";
 
             GenerateFloor();
             GenerateWalls();
